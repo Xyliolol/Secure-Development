@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CardStorageService.Data.Migrations
 {
     [DbContext(typeof(CardStorageServiceDbContext))]
-    [Migration("20220922091309_AccountAdded")]
-    partial class AccountAdded
+    [Migration("20220922162726_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
