@@ -9,6 +9,12 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using CardStorageService.Models.Requests;
+using AutoMapper;
+using CardStorageService.Models.Validators;
+using FluentValidation;
+using CardStorageService.Mappings;
+
 
 namespace CardStorageService
 {
@@ -18,6 +24,13 @@ namespace CardStorageService
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddScoped<IValidator<AuthenticationRequest>, AuthenticationRequestValidator>();
+            builder.Services.AddScoped<IValidator<CreateCardRequest>, CardRequestValidator>();
+            builder.Services.AddScoped<IValidator<CreateClientRequest>, ClientRequestValidator>();
+
+            var mapperConfiguration = new MapperConfiguration(mp => mp.AddProfile(new MappingsProfile()));
+            var mapper = mapperConfiguration.CreateMapper();
+            builder.Services.AddSingleton(mapper);
 
             builder.Services.Configure<DatabaseOptions>(options =>
             {
