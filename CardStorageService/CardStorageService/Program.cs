@@ -14,7 +14,8 @@ using AutoMapper;
 using CardStorageService.Models.Validators;
 using FluentValidation;
 using CardStorageService.Mappings;
-
+using System.Net;
+using CardStorageService.Services.Implementation;
 
 namespace CardStorageService
 {
@@ -23,6 +24,16 @@ namespace CardStorageService
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.WebHost.ConfigureKestrel(options =>
+            {
+                options.Listen(IPAddress.Any, 5001, listenOptions =>
+                {
+                    listenOptions.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2;
+                });
+            });
+
+            builder.Services.AddGrpc();
 
             builder.Services.AddScoped<IValidator<AuthenticationRequest>, AuthenticationRequestValidator>();
             builder.Services.AddScoped<IValidator<CreateCardRequest>, CardRequestValidator>();
@@ -129,11 +140,27 @@ namespace CardStorageService
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            
+            app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseHttpLogging();
-            app.UseRouting();
+            
+            app.UseWhen(c => c.Request.ContentType != "application/grpc",
+               builder =>
+               {
+                   builder.UseHttpLogging();
+               }
+           );
+
+            //app.UseHttpLogging();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapGrpcService<ClientService>();
+                endpoints.MapGrpcService<CardService>();
+
+            });
+            
             app.MapControllers();
 
             app.Run();
