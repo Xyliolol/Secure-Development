@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardStorageService", "CardStorageService\CardStorageService.csproj", "{BB25D0FC-955F-45F7-9E30-28B64B56A350}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardStorageService", "CardStorageService\CardStorageService.csproj", "{BB25D0FC-955F-45F7-9E30-28B64B56A350}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardStorageService.Data", "CardStorageService.Data\CardStorageService.Data.csproj", "{1B0A4834-CBDA-47A0-A766-FBD8BAB0D1A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardStorageService.Data", "CardStorageService.Data\CardStorageService.Data.csproj", "{1B0A4834-CBDA-47A0-A766-FBD8BAB0D1A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtSample", "JwtSample\JwtSample.csproj", "{8DACC8EA-5ECC-4AC5-A69A-3F2E7284B822}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordUtilsClient", "PasswordUtilsClient\PasswordUtilsClient.csproj", "{E7C8E784-764D-4F71-B45D-76876CD6219B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{1B0A4834-CBDA-47A0-A766-FBD8BAB0D1A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B0A4834-CBDA-47A0-A766-FBD8BAB0D1A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B0A4834-CBDA-47A0-A766-FBD8BAB0D1A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DACC8EA-5ECC-4AC5-A69A-3F2E7284B822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DACC8EA-5ECC-4AC5-A69A-3F2E7284B822}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DACC8EA-5ECC-4AC5-A69A-3F2E7284B822}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DACC8EA-5ECC-4AC5-A69A-3F2E7284B822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7C8E784-764D-4F71-B45D-76876CD6219B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7C8E784-764D-4F71-B45D-76876CD6219B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7C8E784-764D-4F71-B45D-76876CD6219B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7C8E784-764D-4F71-B45D-76876CD6219B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
