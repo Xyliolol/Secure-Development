@@ -3,6 +3,9 @@ using CardStorageService.Models.Requests;
 using CardStorageService.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace CardStorageService.Controllers
 {
@@ -10,19 +13,22 @@ namespace CardStorageService.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
-      
-
         private readonly IClientRepositoryService _clientRepositoryService;
         private readonly ILogger<CardController> _logger;
+        private readonly IValidator<CreateClientRequest> _clientValidator;
+        private readonly IMapper _mapper;
 
         public ClientController(
-            ILogger<CardController> logger,
-            IClientRepositoryService clientRepositoryService)
+          ILogger<CardController> logger,
+          IClientRepositoryService clientRepositoryService,
+          IValidator<CreateClientRequest> clientValidator,
+          IMapper mapper)
         {
             _logger = logger;
             _clientRepositoryService = clientRepositoryService;
+            _clientValidator = clientValidator;
+            _mapper = mapper;
         }
-
 
         [HttpPost("create")]
         [ProducesResponseType(typeof(CreateClientResponse), StatusCodes.Status200OK)]
@@ -30,12 +36,17 @@ namespace CardStorageService.Controllers
         {
             try
             {
-                var clientId = _clientRepositoryService.Create(new Client
-                {
-                    FirstName = request.FirstName,
-                    Surname = request.Surname,
-                    Patronymic = request.Patronymic
-                });
+                ValidationResult validatorResult = _clientValidator.Validate(request);
+                if (!validatorResult.IsValid)
+                    return BadRequest(validatorResult.ToDictionary());
+
+                var clientId = _clientRepositoryService.Create(_mapper.Map<Client>(request));
+                //var clientId = _clientRepositoryService.Create(new Client
+                //{
+                //    FirstName = request.FirstName,
+                //    Surname = request.Surname,
+                //    Patronymic = request.Patronymic
+                //});
                 return Ok(new CreateClientResponse
                 {
                     ClientId = clientId

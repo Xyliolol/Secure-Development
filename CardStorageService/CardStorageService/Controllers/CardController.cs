@@ -4,6 +4,9 @@ using CardStorageService.Models;
 using CardStorageService.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace CardStorageService.Controllers
 {
@@ -16,13 +19,19 @@ namespace CardStorageService.Controllers
 
         private readonly ILogger<CardController> _logger;
         private readonly ICardRepositoryService _cardRepositoryService;
+        private readonly IValidator<CreateCardRequest> _cardValidator;
+        private readonly IMapper _mapper;
 
 
         public CardController(ILogger<CardController> logger,
-            ICardRepositoryService cardRepositoryService)
+            ICardRepositoryService cardRepositoryService,
+           IValidator<CreateCardRequest> cardValidator,
+           IMapper mapper)
         {
             _logger = logger;
             _cardRepositoryService = cardRepositoryService;
+            _cardValidator = cardValidator;
+            _mapper = mapper;
         }
 
 
@@ -32,13 +41,18 @@ namespace CardStorageService.Controllers
         {
             try
             {
-                var cardId = _cardRepositoryService.Create(new Card
-                {
-                    ClientId = request.ClientId,
-                    CardNo = request.CardNo,
-                    ExpDate = request.ExpDate,
-                    CVV2 = request.CVV2
-                });
+                ValidationResult validationResult = _cardValidator.Validate(request);
+                if (!validationResult.IsValid)
+                    return BadRequest(validationResult.ToDictionary());
+
+                var cardId = _cardRepositoryService.Create(_mapper.Map<Card>(request));
+                //var cardId = _cardRepositoryService.Create(new Card
+                //{                  
+                //    ClientId = request.ClientId,
+                //    CardNo = request.CardNo,
+                //    ExpDate = request.ExpDate,
+                //    CVV2 = request.CVV2
+                //});
                 return Ok(new CreateCardResponse
                 {
                     CardId = cardId.ToString()
