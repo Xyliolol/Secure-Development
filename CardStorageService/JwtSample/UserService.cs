@@ -53,7 +53,7 @@ namespace JwtSample
             SecurityTokenDescriptor securityTokenDescriptor = new SecurityTokenDescriptor();
             securityTokenDescriptor.Expires = DateTime.UtcNow.AddMinutes(15);
             securityTokenDescriptor.SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
-            securityTokenDescriptor.Subject = new System.Security.Claims.ClaimsIdentity(new Claim[] {
+            securityTokenDescriptor.Subject = new ClaimsIdentity(new Claim[] {
                 new Claim(ClaimTypes.NameIdentifier, id.ToString())
             });
 

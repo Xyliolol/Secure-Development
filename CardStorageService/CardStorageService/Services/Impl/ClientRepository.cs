@@ -1,4 +1,6 @@
 ﻿using CardStorageService.Data;
+using CardStorageService.Models;
+using Microsoft.Extensions.Options;
 
 namespace CardStorageService.Services.Impl
 {
@@ -7,10 +9,11 @@ namespace CardStorageService.Services.Impl
 
         private readonly CardStorageServiceDbContext _context;
         private readonly ILogger<ClientRepository> _logger;
-
+        private readonly IOptions<DatabaseOptions> _databaseOptions;
 
         public ClientRepository(
             ILogger<ClientRepository> logger,
+            IOptions<DatabaseOptions> databaseOptions,
             CardStorageServiceDbContext context)
         {
             _logger = logger;
