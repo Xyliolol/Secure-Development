@@ -20,7 +20,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seminar.Framework", "Semina
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Patterns", "Patterns\Patterns.csproj", "{01BB4110-D97E-4E07-90B1-D8DB26E6017D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardStorageClient", "CardStorageClient\CardStorageClient.csproj", "{AA5E644B-178B-4E07-9BA5-BF6FFFAF8C51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardStorageClient", "CardStorageClient\CardStorageClient.csproj", "{AA5E644B-178B-4E07-9BA5-BF6FFFAF8C51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullSearchSampless", "FullSearchSampless\FullSearchSampless.csproj", "{08FE96BF-08B5-4DE8-A921-6EBF59CB8644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullSearchSample", "FullSearchSample\FullSearchSample.csproj", "{A809DF03-5DF6-43C3-804A-11BDA14FFAF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +64,14 @@ Global
 		{AA5E644B-178B-4E07-9BA5-BF6FFFAF8C51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA5E644B-178B-4E07-9BA5-BF6FFFAF8C51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA5E644B-178B-4E07-9BA5-BF6FFFAF8C51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08FE96BF-08B5-4DE8-A921-6EBF59CB8644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08FE96BF-08B5-4DE8-A921-6EBF59CB8644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08FE96BF-08B5-4DE8-A921-6EBF59CB8644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08FE96BF-08B5-4DE8-A921-6EBF59CB8644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A809DF03-5DF6-43C3-804A-11BDA14FFAF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A809DF03-5DF6-43C3-804A-11BDA14FFAF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A809DF03-5DF6-43C3-804A-11BDA14FFAF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A809DF03-5DF6-43C3-804A-11BDA14FFAF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
